@@ -1,0 +1,69 @@
+{
+    "name": "fcecom-b2c-commerce-react-preview",
+    "version": "0.1.0-SNAPSHOT",
+    "license": "See license in LICENSE",
+    "private": true,
+    "engines": {
+        "node": "^16.0.0 || ^18.0.0",
+        "npm": "^7.0.0 || ^8.0.0 || ^9.0.0"
+    },
+    "ccExtensibility": {
+        "extends": "@salesforce/retail-react-app",
+        "overridesDir": "overrides"
+    },
+    "devDependencies": {
+        "@salesforce/retail-react-app": "2.1.1",
+        "dotenv-webpack": "^8.0.1"
+    },
+    "scripts": {
+        "analyze-build": "cross-env MOBIFY_ANALYZE=true npm run build",
+        "build": "npm run build-translations && pwa-kit-dev build",
+        "build-translations": "npm run extract-default-translations && npm run compile-translations",
+        "compile-translations": "node ./node_modules/@salesforce/retail-react-app/scripts/translations/compile-folder.js translations",
+        "compile-translations:pseudo": "node ./node_modules/@salesforce/retail-react-app/scripts/translations/compile-pseudo.js translations/en-US.json",
+        "extract-default-translations": "node ./node_modules/@salesforce/retail-react-app/scripts/translations/extract-default-messages.js en-US",
+        "format": "pwa-kit-dev format \"**/*.{js,jsx}\"",
+        "lint": "pwa-kit-dev lint \"**/*.{js,jsx}\"",
+        "lint:fix": "npm run lint -- --fix",
+        "postinstall": "npm run compile-translations && npm run compile-translations:pseudo",
+        "push": "npm run build && pwa-kit-dev push",
+        "save-credentials": "pwa-kit-dev save-credentials",
+        "start": "cross-env NODE_ICU_DATA=node_modules/full-icu pwa-kit-dev start",
+        "start:stable": "HMR=false npm run start",
+        "start:inspect": "npm run start -- --inspect",
+        "start:pseudolocale": "npm run extract-default-translations && npm run compile-translations:pseudo && cross-env USE_PSEUDOLOCALE=true npm run start",
+        "tail-logs": "pwa-kit-dev tail-logs",
+        "test": "pwa-kit-dev test",
+        "test:lighthouse": "cross-env NODE_ENV=production lhci autorun --config=tests/lighthouserc.js",
+        "test:max-file-size": "npm run build && bundlesize"
+    },
+    "bundlesize": [
+        {
+            "path": "build/main.js",
+            "maxSize": "42 kB"
+        },
+        {
+            "path": "build/vendor.js",
+            "maxSize": "320 kB"
+        }
+    ],
+    "browserslist": [
+        "iOS >= 9.0",
+        "Android >= 4.4.4",
+        "last 4 ChromeAndroid versions"
+    ],
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "fcecom-frontend-api-client": "^0.18.0",
+        "lodash.get": "^4.4.2",
+        "lodash.isempty": "^4.4.0",
+        "lodash.maxby": "^4.6.0",
+        "lodash.set": "^4.3.2",
+        "lodash.sortby": "^4.7.0",
+        "prop-types": "^15.8.1",
+        "react-object-view": "^0.3.4",
+        "react-player": "^2.13.0",
+        "react-router-dom": "^5.3.4",
+        "recoil": "^0.7.7"
+    }
+}

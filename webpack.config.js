@@ -18,7 +18,7 @@ const updatedConfig = webpackConfig.map((config) => {
     new Dotenv({
       path: path.resolve(__dirname, '.env'),
       // Set to true for Kubernetes deployment
-      systemvars: false,
+      systemvars: true,
     })
   );
   return config;

@@ -1,6 +1,6 @@
 {
     "name": "fcecom-b2c-commerce-react-preview",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "license": "See license in LICENSE",
     "private": true,
     "engines": {
@@ -54,7 +54,7 @@
     ],
     "dependencies": {
         "dotenv": "^16.3.1",
-        "fcecom-frontend-api-client": "^0.22.0",
+        "fcecom-frontend-api-client": "^0.23.0",
         "lodash.get": "^4.4.2",
         "lodash.isempty": "^4.4.0",
         "lodash.maxby": "^4.6.0",

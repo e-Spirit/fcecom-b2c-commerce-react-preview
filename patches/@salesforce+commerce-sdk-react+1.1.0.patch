@@ -1,0 +1,25 @@
+diff --git a/node_modules/@salesforce/commerce-sdk-react/utils.js b/node_modules/@salesforce/commerce-sdk-react/utils.js
+index 296e715..56c35ac 100644
+--- a/node_modules/@salesforce/commerce-sdk-react/utils.js
++++ b/node_modules/@salesforce/commerce-sdk-react/utils.js
+@@ -30,6 +30,9 @@ const onClient = () => typeof window !== 'undefined';
+  * (i.e. Storefront Preview), otherwise `"Lax"`
+  */
+ exports.onClient = onClient;
++
++const ALLOWED_FIRSTSPIRIT_ORIGINS = require("@salesforce/retail-react-app/app/constants").ALLOWED_FIRSTSPIRIT_ORIGINS;
++
+ const getCookieSameSiteAttribute = () => {
+   var _document$location, _document$location$an;
+   if (!onClient()) return;
+@@ -39,8 +42,9 @@ const getCookieSameSiteAttribute = () => {
+   const parentUrl = ((_document$location = document.location) === null || _document$location === void 0 ? void 0 : (_document$location$an = _document$location.ancestorOrigins) === null || _document$location$an === void 0 ? void 0 : _document$location$an[0]) || document.referrer;
+   const parentHostName = parentUrl ? new URL(parentUrl).hostname : '';
+   const isParentSiteTrusted = _constant.IFRAME_HOST_ALLOW_LIST.includes(parentHostName);
++  const isFirstSpiritPreview = ALLOWED_FIRSTSPIRIT_ORIGINS?.includes?.(parentHostName);
+   const isLocalHost = window.location.hostname === 'localhost';
+-  return !isLocalHost && isParentSiteTrusted ? 'none' : 'Lax';
++  return !isLocalHost && (isParentSiteTrusted || isFirstSpiritPreview) ? 'none' : 'Lax';
+ };
+ 
+ /**

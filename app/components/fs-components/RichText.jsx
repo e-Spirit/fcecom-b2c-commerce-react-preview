@@ -6,11 +6,10 @@
 /** CFC Start **/
 import React from 'react';
 import { Box, Button, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react';
-import isEmpty from 'lodash.isempty';
+import { get, isEmpty } from 'lodash';
 import { useEcomNavigation } from '../../contexts/ecomAPI/EcomNavigation';
 import { Link as RouterLink } from 'react-router-dom';
 import { ExternalLinkIcon, LinkIcon } from '@chakra-ui/icons';
-import get from 'lodash.get';
 import PropTypes from 'prop-types';
 
 export const StyledFsText = ({ data, content }) => {

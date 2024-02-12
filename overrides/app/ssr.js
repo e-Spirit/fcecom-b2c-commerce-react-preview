@@ -20,6 +20,14 @@ import { defaultPwaKitSecurityHeaders } from '@salesforce/pwa-kit-runtime/utils/
 import { getConfig } from '@salesforce/pwa-kit-runtime/utils/ssr-config';
 import helmet from 'helmet';
 
+/** CFC Start **/
+const { PORT, CONN_MODE, SSL_FILE_PATH } = getConfig().ecom ?? {};
+
+const port = PORT || 3000;
+const protocol = CONN_MODE || 'https';
+const sslFilePath = protocol === 'https' ? path.resolve(process.cwd(), SSL_FILE_PATH) : '';
+/** CFC End **/
+
 const options = {
   // The build directory (an absolute path)
   buildDir: path.resolve(process.cwd(), 'build'),
@@ -32,21 +40,19 @@ const options = {
 
   // The port that the local dev server listens on
   /** CFC Start **/
-  port: process.env.PORT || 3000,
+  port,
   /** CFC End **/
 
   // The protocol on which the development Express app listens.
   // Note that http://localhost is treated as a secure context for development,
   // except by Safari.
   /** CFC Start **/
-  // TODO: check if there is a better space inside the configuration files,
-  //  cause this is not really ecom-related.
-  protocol: process.env.CONN_MODE || 'https',
+  protocol,
   /** CFC End **/
 
   /** CFC Start **/
   // The path to the combined pem file.
-  sslFilePath: path.resolve(process.cwd(), process.env.SSL_FILE_PATH ?? ''),
+  sslFilePath,
   /** CFC End **/
 };
 

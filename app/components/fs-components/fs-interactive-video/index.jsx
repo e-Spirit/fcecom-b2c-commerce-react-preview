@@ -8,10 +8,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Collapse, Flex, Grid, GridItem, Heading, Image, Text, useDisclosure } from '@chakra-ui/react';
 import ReactPlayer from 'react-player/lazy';
-import get from 'lodash.get';
-import maxBy from 'lodash.maxby';
-import isEmpty from 'lodash.isempty';
-import sortBy from 'lodash.sortby';
+import { get, isEmpty, maxBy, sortBy } from 'lodash';
 import { RichText } from '../RichText';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEcomNavigation } from '../../../contexts/ecomAPI/EcomNavigation';

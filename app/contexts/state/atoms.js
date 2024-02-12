@@ -13,7 +13,7 @@
 import { atom, selectorFamily } from 'recoil';
 import { ecomExtraMenuRevisionAtomic, ecomNavigationRevisionAtomic, ecomPageRevisionAtomic } from './revisions';
 import { fibonacci } from '../../utils/sleep';
-import set from 'lodash.set';
+import { set } from 'lodash';
 
 export const ecomApiAtomic = atom({
   key: 'ecom-api',

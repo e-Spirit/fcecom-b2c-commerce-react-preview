@@ -5,10 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-/* 
+/*
     Hello there! This is a demonstration of how to override a file from the base template.
-    
-    It's necessary that the module export interface remain consistent, 
+
+    It's necessary that the module export interface remain consistent,
     as other files in the base template rely on constants.js, thus we
     import the underlying constants.js, modifies it and re-export it.
 */
@@ -25,8 +25,13 @@ DEFAULT_LIMIT_VALUES[0] = 25;
 DEFAULT_SEARCH_PARAMS.limit = 25;
 /** CFC End **/
 
-export const CUSTOM_HOME_TITLE = '🎉 Hello Extensible React Template!';
-
 export { DEFAULT_LIMIT_VALUES, DEFAULT_SEARCH_PARAMS };
+
+/** CFC Start **/
+export const ALLOWED_FIRSTSPIRIT_ORIGINS = [
+  // Replace with FirstSpirit server origin
+  'example.org.hosting'
+];
+/** CFC End **/
 
 export * from '@salesforce/retail-react-app/app/constants';

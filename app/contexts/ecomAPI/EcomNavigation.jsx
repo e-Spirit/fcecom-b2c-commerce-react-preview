@@ -13,11 +13,12 @@ import { ecomApiAtomic, ecomLanguageAtomic, ecomMessageOverlayAtomic, ecomNaviga
 import { MultiSiteContext } from '@salesforce/retail-react-app/app/contexts';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-import get from 'lodash.get';
+import { get } from 'lodash';
 import { EcomAction } from '../EcomAction';
 import { getPathWithLocale } from '@salesforce/retail-react-app/app/utils/url';
 import { fibonacci } from '../../utils/sleep';
 import { bumpRevision, ecomNavigationRevisionAtomic } from '../state/revisions';
+import { getConfig } from '@salesforce/pwa-kit-runtime/utils/ssr-config';
 import PropTypes from 'prop-types';
 import { toFSLocale, toSfLocale } from '../../utils/locale';
 
@@ -46,10 +47,12 @@ export const EcomNavigationProvider = ({ children }) => {
   const setOverlay = useSetRecoilState(ecomMessageOverlayAtomic);
   const openOverlay = ({ messageId, defaultMessage }) => setOverlay(() => ({ messageId, defaultMessage, isOpen: true }));
 
+  const { ECOM_API_LOCALE } = getConfig().ecom ?? {};
+
   useEffect(() => {
     setLocale(() => ({
-      fs: toFSLocale(locale) ?? process.env.ECOM_API_LOCALE,
-      sf: locale ?? toSfLocale(process.env.ECOM_API_LOCALE),
+      fs: toFSLocale(locale) ?? ECOM_API_LOCALE,
+      sf: locale ?? toSfLocale(ECOM_API_LOCALE),
     }));
     updateNavigation(bumpRevision);
   }, [locale]);

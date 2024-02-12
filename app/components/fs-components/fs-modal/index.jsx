@@ -6,7 +6,7 @@
 /** CFC Start **/
 import React, { useEffect } from 'react';
 import { Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
-import get from 'lodash.get';
+import { get } from 'lodash';
 import { useEcomPage } from '../../../contexts/ecomAPI/EcomPage';
 import { useEcomNavigation } from '../../../contexts/ecomAPI/EcomNavigation';
 

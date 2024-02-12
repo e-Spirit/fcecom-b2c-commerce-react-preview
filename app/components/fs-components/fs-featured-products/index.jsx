@@ -7,7 +7,7 @@
 import React from 'react';
 import { Box, Heading, Image, LinkBox, SimpleGrid, Text } from '@chakra-ui/react';
 import { RichText } from '../RichText';
-import get from 'lodash.get';
+import { get } from 'lodash';
 import { EcomShopLink } from '../fs-link';
 import PropTypes from 'prop-types';
 

@@ -8,9 +8,8 @@
 import React from 'react';
 import { Box, Button, Grid, GridItem, Heading, Image, keyframes, Popover, PopoverTrigger, Portal } from '@chakra-ui/react';
 import FsProductFlyout from '../fs-product-flyout';
-import get from 'lodash.get';
+import { get, isEmpty } from 'lodash';
 import { RichText } from '../RichText';
-import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 
 const createOverlayPositionData = (area, imgWidth, imgHeight) => {

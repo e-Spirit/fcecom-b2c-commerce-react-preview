@@ -12,7 +12,22 @@
 
 Having questions? [Get Support](https://support.crownpeak.com).
 
-## Configuration
+## Connect PWA to your Salesforce instance
+
+The configuration against the custom B2C commerce instance is set in `./config/default.js` configuration files. You can provide additional config files, like such for local development. Read more about this in the [documentation](https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/configuration-options.html).
+
+### Mandatory configuration via environment variables
+Although all important configuration can be done in these files, there are 2 additional values that have to be set as environment variables, like listed in the list below.
+
+| Property             | Description                                                                        |
+|----------------------|------------------------------------------------------------------------------------|
+| EXTERNAL_DOMAIN_NAME | The external domain name used for the PWA. Example: `localhost.e-spirit.live:4200` |
+| LISTEN_ADDRESS       | The address that the PWA is listening on. Example: `localhost.e-spirit.live:4200`. |
+
+### Optional environment configuration values
+
+All the configuration can be done with environment variables.
+They are overridden by `config/local.js` though, so only if the `config/default.js` can be loaded, the environemnt variables are used here.
 
 The configuration against the custom B2C Commerce instance is set in the `.env` file and will be used in `./config/default.js`.
 
@@ -33,6 +48,10 @@ Rename `.env.template` to `.env` and fill in the fields described below:
 | ECOM_API_URL         | The url to your Frontend API backend service.                                                                                            |
 | ECOM_API_LOCALE      | The default locale to use. Default is set to `en_GB`.                                                                                    |
 | LOG_LEVEL            | Numeric representation of log levels:<ul><li>DEBUG = 0</li><li>INFO = 1</li><li>WARNING = 2</li><li>ERROR = 3</li><li>NONE = 4</li></ul> |
+
+## Set FirstSpirit Server Origin
+With the update to v3 only a few hosts are allowed to host the storefront in an iframe.
+Therefore the FirstSpirit server origin needs to be added to `ALLOWED_FIRSTSPIRIT_ORIGINS` in `./overrides/app/constants.js`.
 
 ## SSL Configuration (Combine PEM file)
 

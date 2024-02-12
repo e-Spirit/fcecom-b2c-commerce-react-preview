@@ -13,6 +13,7 @@ import { bumpRevision, ecomExtraMenuRevisionAtomic, ecomNavigationRevisionAtomic
 import { EcomAction } from '../EcomAction';
 import { useHistory } from 'react-router-dom';
 import { EcomActionOverlay } from '../../components/ecom-overlay';
+import { getConfig } from '@salesforce/pwa-kit-runtime/utils/ssr-config';
 import PropTypes from 'prop-types';
 
 export const EcomApiContext = React.createContext();
@@ -29,14 +30,16 @@ export const EcomApiProvider = ({ children }) => {
   const resetOverlay = useResetRecoilState(ecomMessageOverlayAtomic);
   const openOverlay = ({ messageId, defaultMessage }) => setOverlay(() => ({ messageId, defaultMessage, isOpen: true }));
 
-  useEffect(() => {
-    const ecomApi = new EcomApi(process.env.ECOM_API_URL, parseInt(process.env.LOG_LEVEL));
+  const { ECOM_API_URL, LOG_LEVEL, ECOM_API_LOCALE } = getConfig().ecom ?? {};
 
-    ecomApi.setDefaultLocale(process.env.ECOM_API_LOCALE);
+  useEffect(() => {
+    const ecomApi = new EcomApi(ECOM_API_URL, LOG_LEVEL);
+
+    ecomApi.setDefaultLocale(ECOM_API_LOCALE);
     ecomApi.init().then((isPreview) => {
       // DEBUG = 0, INFO = 1, WARNING = 2, ERROR = 3, NONE = 4
-      const logLevel = process.env.LOG_LEVEL ?? 1;
-      const devMode = logLevel === 0 || logLevel === '0';
+      const logLevel = LOG_LEVEL ?? 1;
+      const devMode = logLevel === 0;
 
       setEcomApi({ ecomApi, isPreview, logLevel, devMode });
 

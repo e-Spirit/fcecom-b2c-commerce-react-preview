@@ -6,7 +6,7 @@
 /** CFC Start **/
 import React from 'react';
 import { Grid, GridItem, Heading, Image } from '@chakra-ui/react';
-import get from 'lodash.get';
+import { get } from 'lodash';
 import { RichText } from '../RichText';
 import PropTypes from 'prop-types';
 

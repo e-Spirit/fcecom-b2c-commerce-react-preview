@@ -6,7 +6,7 @@
 /** CFC Start **/
 import React from 'react';
 import { Box, Button, Image, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverHeader } from '@chakra-ui/react';
-import get from 'lodash.get';
+import { get } from 'lodash';
 import { EcomShopLink } from '../fs-link';
 import PropTypes from 'prop-types';
 

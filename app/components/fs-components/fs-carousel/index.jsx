@@ -7,7 +7,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Flex, IconButton, Slide } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import get from 'lodash.get';
+import { get } from 'lodash';
 import FsBanner from '../fs-banner';
 import PropTypes from 'prop-types';
 
@@ -54,7 +54,7 @@ const FsCarousel = ({ section }) => {
             <Box>
               <IconButton
                 aria-label="Previous"
-                icon={<ChevronLeftIcon width={10} height={10} />}
+                icon={<ChevronLeftIcon width={10} height={10}/>}
                 onClick={handlePrev}
                 position="absolute"
                 left="2"
@@ -66,7 +66,7 @@ const FsCarousel = ({ section }) => {
 
               <IconButton
                 aria-label={'Next'}
-                icon={<ChevronRightIcon width={10} height={10} />}
+                icon={<ChevronRightIcon width={10} height={10}/>}
                 onClick={handleNext}
                 position="absolute"
                 right="2"

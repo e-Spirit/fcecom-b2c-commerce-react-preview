@@ -1,6 +1,6 @@
 {
     "name": "fcecom-b2c-commerce-react-preview",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "See license in LICENSE",
     "private": true,
     "engines": {
@@ -28,9 +28,8 @@
         "lint": "pwa-kit-dev lint \"**/*.{js,jsx}\"",
         "lint:fix": "npm run lint -- --fix",
         "postinstall": "patch-package && npm run compile-translations && npm run compile-translations:pseudo",
-        "push": "npm run build && pwa-kit-dev push --projectSlug fcecom-salesforce-pw",
-        "push+deploy:dev": "EXTERNAL_DOMAIN_NAME=fcecom-salesforce-pw-dev1.mobify-storefront.com LISTEN_ADDRESS=fcecom-salesforce-pw-dev1.mobify-storefront.com npm run push -- --target dev1",
-        "push+deploy:prod": "EXTERNAL_DOMAIN_NAME=fcecom-salesforce-pw-production.mobify-storefront.com LISTEN_ADDRESS=fcecom-salesforce-pw-production.mobify-storefront.com   npm run push -- --target production",
+        "push": "npm run build && pwa-kit-dev push --projectSlug <PROJECT_ID>",
+        "push+deploy": "EXTERNAL_DOMAIN_NAME=<EXTERNAL_DOMAIN_NAME> LISTEN_ADDRESS=<LISTEN_ADDRESS> npm run push -- --target <ENVIRONMENT_ID>",
         "save-credentials": "dotenv -- pwa-kit-dev save-credentials",
         "start": "dotenv -- cross-env NODE_ICU_DATA=node_modules/full-icu pwa-kit-dev start",
         "start:stable": "HMR=false npm run start",
@@ -58,7 +57,7 @@
     ],
     "dependencies": {
         "dotenv": "^16.3.1",
-        "fcecom-frontend-api-client": "^0.24.0",
+        "fcecom-frontend-api-client": "^0.25.0",
         "lodash": "^4.17.21",
         "prop-types": "^15.8.1",
         "react-object-view": "^0.3.4",

@@ -53,6 +53,10 @@ Rename `.env.template` to `.env` and fill in the fields described below:
 With the update to v3 only a few hosts are allowed to host the storefront in an iframe.
 Therefore the FirstSpirit server origin needs to be added to `ALLOWED_FIRSTSPIRIT_ORIGINS` in `./overrides/app/constants.js`.
 
+## Managed Runtime
+In order to push and deploy a bundle to a target environment in Managed Runtime, you need to adjust the `push` and `push+deploy` npm scripts in the package.json.
+Replace the `<PROJECT_ID>`, `<EXTERNAL_DOMAIN_NAME>`, `<LISTEN_ADDRESS>` and `<ENVIRONMENT_ID>` with the correct values. The values can be found in the [Runtime Admin Dashboard](https://runtime.commercecloud.com/login).
+
 ## SSL Configuration (Combine PEM file)
 
 The PWA does need a combined certificate file to work with SSL enabled. This can be produced with a short command as follows:

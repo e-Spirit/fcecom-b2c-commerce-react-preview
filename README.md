@@ -8,13 +8,9 @@
 -   Node 18.x
 -   npm 9.x
 
-## Help & Troubleshooting
-
-Having questions? [Get Support](https://support.crownpeak.com).
-
 ## Connect PWA to your Salesforce instance
 
-The configuration against the custom B2C commerce instance is set in `./config/default.js` configuration files. You can provide additional config files, like such for local development. Read more about this in the [documentation](https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/configuration-options.html).
+The configuration against the custom B2C commerce instance is set in `./config/default.js` configuration files. You can provide additional config files, e.g. for local development. Read more about this in the [documentation](https://developer.salesforce.com/docs/commerce/pwa-kit-managed-runtime/guide/configuration-options.html).
 
 ### Mandatory configuration via environment variables
 Although all important configuration can be done in these files, there are 2 additional values that have to be set as environment variables, like listed in the list below.
@@ -52,6 +48,12 @@ Rename `.env.template` to `.env` and fill in the fields described below:
 ## Set FirstSpirit Server Origin
 With the update to v3 only a few hosts are allowed to host the storefront in an iframe.
 Therefore the FirstSpirit server origin needs to be added to `ALLOWED_FIRSTSPIRIT_ORIGINS` in `./overrides/app/constants.js`.
+
+## Set correct site identifier
+Make sure to set the correct site identifier under `./config/sites.js`. It needs to match the `SITE_ID` that you have defined in your .env file.
+
+## Add domains to ssr.js
+It may be necessary to add your custom domains for the [helmet](https://helmetjs.github.io/) configuration under `./overrides/app/ssr.js`.
 
 ## Managed Runtime
 In order to push and deploy a bundle to a target environment in Managed Runtime, you need to adjust the `push` and `push+deploy` npm scripts in the package.json.

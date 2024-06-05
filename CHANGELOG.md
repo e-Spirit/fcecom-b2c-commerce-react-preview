@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.0.0...v1.0.1) (2024-06-05)
+
+### Changes
+
+* Updated fcecom-frontend-api-client to v1.0.1.
+
 ## [1.0.0](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v0.3.0...v1.0.0) (2024-05-17)
 
 ### Changes

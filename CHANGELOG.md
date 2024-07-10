@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.0.1...v1.0.2) (2024-07-10)
+
+### Changes
+
+* Changed the ID displayed in the debug header to be the pageRefID. This is necessary to do a request directly to the Frontend API Backend.
+* Updated fcecom-frontend-api-client to v1.1.0.
+
 ## [1.0.1](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.0.0...v1.0.1) (2024-06-05)
 
 ### Changes

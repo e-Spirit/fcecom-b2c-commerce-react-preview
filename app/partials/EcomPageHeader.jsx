@@ -14,7 +14,7 @@ import { ecomApiAtomic } from '../contexts/state/atoms';
 
 export const EcomPageHeader = () => {
   const { ecomPage } = useEcomPage();
-  const targetId = ecomPage?.id;
+  const targetId = ecomPage?.refId;
 
   const { value, hasCopied, onCopy } = useClipboard(targetId);
 

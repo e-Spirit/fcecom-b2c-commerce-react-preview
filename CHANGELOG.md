@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.0.4...v1.1.0) (2024-10-22)
+
+### Changes
+
+* Fixed a bug where `onRerenderView` events were not handled.
+* Updated fcecom-frontend-api-client to v1.3.0.
+
 ## [1.0.4](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.0.3...v1.0.4) (2024-10-16)
 
 ### Changes

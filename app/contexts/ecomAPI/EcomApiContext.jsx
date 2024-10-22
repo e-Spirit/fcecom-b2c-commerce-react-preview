@@ -52,6 +52,7 @@ export const EcomApiProvider = ({ children }) => {
         ecomApi.addHook(EcomHooks.SECTION_CREATED, () => updatePage(bumpRevision));
         ecomApi.addHook(EcomHooks.SECTION_CREATION_CANCELLED, () => updatePage(bumpRevision));
         ecomApi.addHook(EcomHooks.ENSURED_PAGE_EXISTS, () => updatePage(bumpRevision));
+        ecomApi.addHook(EcomHooks.RERENDER_VIEW, () => updatePage(bumpRevision));
 
         // Refresh Extra Menu
         ecomApi.addHook(EcomHooks.CONTENT_CHANGED, () => updateExtraMenu(bumpRevision));

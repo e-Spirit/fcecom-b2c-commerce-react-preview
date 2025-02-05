@@ -1,3 +1,16 @@
+## [1.2.0](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.1.2...v1.2.0) (2025-02-05)
+
+### Changes
+* Added a new ShareView feature that enables secure sharing of preview content outside of the ContentCreator.
+
+### UPDATE NOTICE
+
+ShareView is a mode of the Frontend API ecosystem that allows users to preview content outside the ContentCreator without requiring it to be released in FirstSpirit.
+
+This feature involves a token generation process that grants users access to a generated token, enabling them to view preview content from the Frontend API Backend or a similar implementation of the Frontend API Server package.
+
+While the functionality works out of the box, some configuration steps are required to enable this view. Refer to the [Frontend API documentation](https://docs.e-spirit.com/ecom/fsconnect-com-api/fsconnect-com-frontend-api/latest/share-view/).
+
 ## [1.1.3](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.1.2...v1.1.3) (2025-01-09)
 
 ### Changes

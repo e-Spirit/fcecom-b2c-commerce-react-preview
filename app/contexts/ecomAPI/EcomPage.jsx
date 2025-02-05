@@ -25,7 +25,7 @@ export const EcomPage = ({ pageTarget, children }) => {
     ecomApi && isPreview && (id || fsPageId) && ecomApi.setPage({ ...pageTarget, isFsDriven });
   }, [id, fsPageId, type, locale, fsPageTemplate, isFsDriven, ecomApi, isPreview]);
 
-  return <EcomPageContext.Provider value={{ ecomPage }}>{children}</EcomPageContext.Provider>;
+  return <EcomPageContext.Provider value={{ ecomPage, pageTarget }}>{children}</EcomPageContext.Provider>;
 };
 
 EcomPage.propTypes = {

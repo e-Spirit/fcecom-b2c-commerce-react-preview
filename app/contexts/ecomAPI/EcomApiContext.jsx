@@ -11,7 +11,7 @@ import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { ecomApiAtomic, ecomMessageOverlayAtomic } from '../state/atoms';
 import { bumpRevision, ecomExtraMenuRevisionAtomic, ecomNavigationRevisionAtomic, ecomPageRevisionAtomic } from '../state/revisions';
 import { EcomAction } from '../EcomAction';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { EcomActionOverlay } from '../../components/ecom-overlay';
 import { getConfig } from '@salesforce/pwa-kit-runtime/utils/ssr-config';
 import PropTypes from 'prop-types';
@@ -32,6 +32,16 @@ export const EcomApiProvider = ({ children }) => {
 
   const { ECOM_API_URL, LOG_LEVEL, ECOM_API_LOCALE } = getConfig().ecom ?? {};
 
+  let location = useLocation();
+
+  /**
+   * It is recommended to update the page on every navigation.
+   * This ensures that no cached version of the page is presented.
+   */
+  useEffect(() => {
+    updatePage(bumpRevision);
+  }, [location]);
+
   useEffect(() => {
     const ecomApi = new EcomApi(ECOM_API_URL, LOG_LEVEL);
 
@@ -42,6 +52,10 @@ export const EcomApiProvider = ({ children }) => {
       const devMode = logLevel === 0;
 
       setEcomApi({ ecomApi, isPreview, logLevel, devMode });
+
+      // Reload page when Shared Preview was started or closed
+      ecomApi.addHook(EcomHooks.START_SHARED_PREVIEW, () => updatePage(bumpRevision));
+      ecomApi.addHook(EcomHooks.END_SHARED_PREVIEW, () => updatePage(bumpRevision));
 
       if (isPreview) {
         // Refresh Navigation

@@ -17,8 +17,8 @@ import FsFeaturedProducts from '../fs-components/fs-featured-products';
 import FsInteractiveVideo from '../fs-components/fs-interactive-video';
 import PropTypes from 'prop-types';
 
-const EcomSectionWrap = ({ children }) => (
-  <Box className="outer-container" minWidth="100%" padding="20px 0">
+const EcomSectionWrap = ({ children, index }) => (
+  <Box className="outer-container" minWidth="100%" paddingTop={index === 0 ? '20px' : undefined} paddingBottom="20px">
     {children}
   </Box>
 );
@@ -52,8 +52,8 @@ const FirstSpiritComponentSelector = () => {
   return (
     <Box data-fcecom-slot-name={slotName} style={{ minHeight: 20 }}>
       <Box>
-        {sections?.map((section) => (
-          <EcomSectionWrap key={section?.id}>
+        {sections?.map((section, index) => (
+          <EcomSectionWrap key={section?.id} index={index}>
             <ChooseComponent section={section} />
           </EcomSectionWrap>
         ))}
@@ -64,6 +64,7 @@ const FirstSpiritComponentSelector = () => {
 
 EcomSectionWrap.propTypes = {
   children: PropTypes.object,
+  index: PropTypes.number.isRequired,
 };
 
 ChooseComponent.propTypes = {

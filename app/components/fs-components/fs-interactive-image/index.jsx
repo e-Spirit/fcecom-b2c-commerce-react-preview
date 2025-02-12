@@ -11,6 +11,7 @@ import FsProductFlyout from '../fs-product-flyout';
 import { get, isEmpty } from 'lodash';
 import { RichText } from '../RichText';
 import PropTypes from 'prop-types';
+import { EmptyState } from '../../fs-empty-state/emptyState';
 
 const createOverlayPositionData = (area, imgWidth, imgHeight) => {
   const positionAndDimension = {
@@ -41,18 +42,18 @@ const toIntValue = (value, fallback = 0) => {
 };
 
 const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg)
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg)
+    }
 `;
 
 const FsInteractiveImage = ({ section }) => {
   const initRef = React.useRef();
 
-  if (!section?.data) return null;
+  if (!section?.data) return <EmptyState section={section} message="Missing data"></EmptyState>;
 
   const data = section.data;
   const headLine = get(data, 'st_headline', null);
@@ -65,6 +66,8 @@ const FsInteractiveImage = ({ section }) => {
 
   const hasText = headLine || !isEmpty(text);
   const imageStyle = hasText ? { maxWidth: '6xl', maxHeight: 'lg' } : {};
+
+  if (!imgUrl) return <EmptyState section={section} message="Missing image" />;
 
   return (
     <Grid templateColumns={hasText ? '1fr auto' : '1fr'} gap={6} data-preview-id={get(section, 'previewId')}>

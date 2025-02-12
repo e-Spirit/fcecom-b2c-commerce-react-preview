@@ -13,12 +13,13 @@ import { RichText } from '../RichText';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEcomNavigation } from '../../../contexts/ecomAPI/EcomNavigation';
 import PropTypes from 'prop-types';
+import { EmptyState } from '../../fs-empty-state/emptyState';
 
 const FsProductCatalogEntry = ({ catalog }) => {
-  if (!catalog.data.st_product) return null;
+  if (!catalog.data.st_product) return <EmptyState message="Missing product" />;
 
   const { id, label, extract, image } = get(catalog, 'data.st_product.value[0].value') ?? {};
-  if (!(id || label || extract || image)) return null;
+  if (!id && !label && !extract && !image) return <EmptyState message="Missing product" />;
 
   return (
     <Grid templateColumns="1fr auto" gap={6} mb={5}>
@@ -49,6 +50,8 @@ const FsInteractiveVideoItem = ({ catalog }) => {
   const { resolveReference } = useEcomNavigation();
   const linkTarget = resolveReference(get(catalog, 'data.st_link'));
 
+  if (!heading && !text) return <EmptyState message="Missing content" />;
+
   return (
     <Grid templateColumns="1fr auto" gap={6} mb={5}>
       <GridItem w="100%" display={'flex'} flexDir={'column'} justifyContent={'center'}>
@@ -62,7 +65,7 @@ const FsInteractiveVideoItem = ({ catalog }) => {
           )}
         </Flex>
       </GridItem>
-      {!isEmpty(get(catalog, 'data.st_image', [])) && (
+      {!isEmpty(get(catalog, 'data.st_image', [])) ? (
         <GridItem w="100%" display={'flex'} flexDir={'column'} justifyContent={'center'}>
           <Image
             maxHeight={'3xs'}
@@ -73,6 +76,8 @@ const FsInteractiveVideoItem = ({ catalog }) => {
             alt={get(catalog, 'data.st_image.description')}
           />
         </GridItem>
+      ) : (
+        <EmptyState message="Missing image" />
       )}
     </Grid>
   );
@@ -80,7 +85,7 @@ const FsInteractiveVideoItem = ({ catalog }) => {
 
 const FsAdditionalContentEntry = ({ catalog }) => {
   const image = get(catalog, 'data.st_picture');
-  if (!image) return null;
+  if (!image) return <EmptyState message="Missing content" />;
 
   return (
     <Grid templateColumns="auto 1fr" gap={6} mb={5}>
@@ -139,7 +144,7 @@ const FsInteractiveVideo = ({ section }) => {
     onOpen();
   }, [currentSeconds]);
 
-  if (!section?.data) return null;
+  if (!section?.data) return <EmptyState section={section} message="Missing data" />;
 
   const youtubeId = get(section, 'data.st_youtubeVideo.value[0].identifier');
   const titleFallback = get(section, 'data.st_youtubeVideo.value[0].value.title');
@@ -156,7 +161,7 @@ const FsInteractiveVideo = ({ section }) => {
 
   const autoplay = section.data.st_autoPlay || false;
 
-  return (
+  return youtubeId ? (
     <div data-preview-id={section?.previewId} key={section?.id}>
       <Box display={'flext'} position={'relative'}>
         <ReactPlayer
@@ -191,6 +196,8 @@ const FsInteractiveVideo = ({ section }) => {
         </Collapse>
       </Box>
     </div>
+  ) : (
+    <EmptyState section={section} message="YouTube Video ID missing" />
   );
 };
 

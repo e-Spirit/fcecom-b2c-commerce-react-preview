@@ -469,7 +469,7 @@ const ProductList = (props) => {
                 <SimpleGrid columns={[2, 2, 3, 3]} spacingX={4} spacingY={{ base: 12, lg: 16 }}>
                   {isHydrated() && (isRefetching || !productSearchResult)
                     ? new Array(searchParams.limit).fill(0).map((value, index) => <ProductTileSkeleton key={index} />)
-                    : productSearchResult.hits.map((productSearchItem) => {
+                    : productSearchResult?.hits.map((productSearchItem) => {
                         const productId = productSearchItem.productId;
                         const isInWishlist = !!wishlist?.customerProductListItems?.find((item) => item.productId === productId);
 

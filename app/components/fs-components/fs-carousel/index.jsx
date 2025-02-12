@@ -11,6 +11,8 @@ import { get } from 'lodash';
 import FsBanner from '../fs-banner';
 import PropTypes from 'prop-types';
 
+import { EmptyState } from '../../fs-empty-state/emptyState';
+
 const FsCarousel = ({ section }) => {
   const data = section.data;
   const autoplay = !!data.st_autoplay?.key;
@@ -33,7 +35,7 @@ const FsCarousel = ({ section }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!section?.data) return null;
+  if (!section?.data) return <EmptyState section={section} message="Missing data" />;
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
@@ -79,7 +81,7 @@ const FsCarousel = ({ section }) => {
           )}
         </Flex>
       </Box>
-    )) || <Box data-preview-id={section.previewId}></Box>
+    )) || <EmptyState section={section} message="No elements to display" />
   );
 };
 

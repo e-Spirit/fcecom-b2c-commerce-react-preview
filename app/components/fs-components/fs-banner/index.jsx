@@ -9,6 +9,8 @@ import { Box, Heading, Text } from '@chakra-ui/react';
 import { EcomLinkOverlay } from '../fs-link';
 import PropTypes from 'prop-types';
 
+import { EmptyState } from '../../fs-empty-state/emptyState';
+
 const LEFT = 'left';
 const CENTER = 'center';
 const RIGHT = 'right';
@@ -55,42 +57,44 @@ const setVariant = (variant) => {
 };
 
 const FsBanner = ({ section }) => {
-  if (!section?.data) return null;
+  if (!section?.data) return <EmptyState section={section} message="Missing data" />;
 
   const data = section.data;
   const imgUrl = data.st_image?.resolutions?.['16x9_L']?.url;
 
+  if (!imgUrl) return <EmptyState section={section} message="Missing image" />;
+
   setVariant(data.st_variant?.key);
 
-  return (
-    (imgUrl && (
-      <Box
-        data-preview-id={section.previewId}
-        display={'block'}
-        position={'relative'}
-        paddingY={32}
-        borderRadius="lg"
-        overflow={'hidden'}
-        backgroundImage={`url(${imgUrl})`}
-        title={data.st_image_alt_text ?? ''}
-        backgroundPosition="center"
-        backgroundRepeat="no-repeat"
-        backgroundSize={'cover'}
-      >
-        <EcomLinkOverlay fsLink={data.st_link}>
-          {(data.st_title || data.st_subtitle) && (
-            <Box backgroundColor={bgColor} color={textColor} textAlign={textPosition} opacity={0.6} py={5} px={20} mx={'auto'}>
-              {data.st_title && (
-                <Heading as={'h1'} marginBottom={4} opacity={1}>
-                  {data.st_title}
-                </Heading>
-              )}
-              {data.st_subtitle && <Text opacity={1}>{data.st_subtitle}</Text>}
-            </Box>
-          )}
-        </EcomLinkOverlay>
-      </Box>
-    )) || <Box data-preview-id={section.previewId}></Box>
+  return imgUrl ? (
+    <Box
+      data-preview-id={section.previewId}
+      display={'block'}
+      position={'relative'}
+      paddingY={32}
+      borderRadius="lg"
+      overflow={'hidden'}
+      backgroundImage={`url(${imgUrl})`}
+      title={data.st_image_alt_text ?? ''}
+      backgroundPosition="center"
+      backgroundRepeat="no-repeat"
+      backgroundSize={'cover'}
+    >
+      <EcomLinkOverlay fsLink={data.st_link}>
+        {(data.st_title || data.st_subtitle) && (
+          <Box backgroundColor={bgColor} color={textColor} textAlign={textPosition} opacity={0.6} py={5} px={20} mx={'auto'}>
+            {data.st_title && (
+              <Heading as={'h1'} marginBottom={4} opacity={1}>
+                {data.st_title}
+              </Heading>
+            )}
+            {data.st_subtitle && <Text opacity={1}>{data.st_subtitle}</Text>}
+          </Box>
+        )}
+      </EcomLinkOverlay>
+    </Box>
+  ) : (
+    <EmptyState section={section} message="Image missing" />
   );
 };
 

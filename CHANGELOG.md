@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.3.2...v1.3.3) (2025-04-08)
+
+### Changes
+
+* Updated fcecom-frontend-api-client to v1.6.0.<br>
+  Which includes the following changes:
+  * Added the ability to get the available locales in a FirstSpirit project.
+  * Fixed formatting issues.
+
 ## [1.3.2](https://github.com/e-Spirit/fcecom-b2c-commerce-react-preview/compare/v1.3.1...v1.3.2) (2025-03-20)
 
 ### Changes
